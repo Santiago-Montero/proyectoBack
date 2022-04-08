@@ -16,13 +16,13 @@ app.listen(8080, () =>{
 })
 
 
-app.get('/', async (req, res) => {
+app.get('/products', async (req, res) => {
     const products = await getProducts()
     console.log(products)
     res.send(products)
     return products
 })
-app.get('/:id', async (req, res) => {
+app.get('/products/:id', async (req, res) => {
     const id = req.params.id
     const product = await getProduct(id)
     console.log(product)
