@@ -1,0 +1,28 @@
+.box-img{
+    width: 300px;
+    height: 250px;
+}
+.box{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+.box-buy{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.box-price{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.box-button{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    width: 50%;
+}
