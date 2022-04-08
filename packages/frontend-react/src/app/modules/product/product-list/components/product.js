@@ -1,6 +1,8 @@
 import './product.css'
-const Product = ({product}) => {
+import { Link } from 'react-location'
 
+const Product = ({product}) => {
+    
     return(
         <>
             <div className='box'>
@@ -14,8 +16,10 @@ const Product = ({product}) => {
                         <button className='button is-link'> Buy</button>
                     </div>
                 </div>
-                <button className='button is-ghost'> More Info...</button>
-                {{/* Fijarme lo del route de react 18 nashe */}}
+                <Link to={`/products/${product._id}`}> 
+                    <button className='button is-ghost'> More Info...</button>
+                </Link>
+                {/* Fijarme lo del route de react 18 nashe */}
             </div>
         </>
     )
