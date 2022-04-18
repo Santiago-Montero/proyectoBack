@@ -1,9 +1,10 @@
-import Axios from 'axios'
 
-const url = 'http://localhost:8080/';
+import interceptor from '../auth/interceptor'
+
+
 export const getProducts = () =>{
     return new Promise ((resolve, reject) => {
-        Axios({url : url+'products'})
+        interceptor.get('/products')
         .then((res) => {
             resolve(res.data)
         }).catch((error) => {
@@ -14,7 +15,7 @@ export const getProducts = () =>{
 
 export const getProduct = (id) =>{
     return new Promise ((resolve, reject) => {
-        Axios({url : url+'products/'+id})
+        interceptor.get('products/'+id)
         .then((res) => {
             resolve(res.data)
         }).catch((error) => {

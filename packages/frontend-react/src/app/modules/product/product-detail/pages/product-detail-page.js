@@ -1,4 +1,4 @@
-import { useEffect, useState, useParams } from "react"
+import { useEffect, useState } from "react"
 import { getProduct } from "../../product.service"
 import ProductDetail from "../components/product-detail"
 import { useMatch } from 'react-location'
@@ -18,9 +18,8 @@ const ProductPageDetail = () => {
     },[params.id]) 
     return(
         <>
-            <div className="container products"> 
-                
-                <ProductDetail product={product}/>
+            <div className="container products">     
+                {product ? <ProductDetail product={product}/> : '<h1> Loading... </h1>'}
             </div>
         </>
     )

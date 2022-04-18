@@ -2,8 +2,10 @@
 const ProductDetail = ({product}) => {
     return(
         <>
-            <div>
-                {product.name}
+            <div className="box">
+
+                <h1>{product.name}</h1>
+                <img src={product.photo} />
             </div>
         </>
     )
