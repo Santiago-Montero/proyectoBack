@@ -15,7 +15,7 @@ export const getProducts = () =>{
 
 export const getProduct = (id) =>{
     return new Promise ((resolve, reject) => {
-        interceptor.get('products/'+id)
+        interceptor.get('/products/'+id)
         .then((res) => {
             resolve(res.data)
         }).catch((error) => {

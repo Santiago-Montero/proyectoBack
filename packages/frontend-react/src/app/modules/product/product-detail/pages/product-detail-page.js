@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react"
 import { getProduct } from "../../product.service"
 import ProductDetail from "../components/product-detail"
-import { useMatch } from 'react-location'
+import { useParams } from "react-router"
 
 
 const ProductPageDetail = () => {
-    const params = useMatch().params;
+    const { id } = useParams()
     const [product , setProduct] = useState(undefined)
     
-    
     useEffect(() =>{
-        getProduct(params.id).then(product =>{
+        getProduct(id).then(product =>{
             setProduct(product);
         }).catch((error)=> {
             console.log('Error: ' + error)
         })
-    },[params.id]) 
+    },[id]) 
     return(
         <>
             <div className="container products">     
-                {product ? <ProductDetail product={product}/> : '<h1> Loading... </h1>'}
+                {product ? <ProductDetail product={product}/> : <h1> Loading... </h1>}
             </div>
         </>
     )

@@ -1,0 +1,16 @@
+.box-inputs{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 500px;
+}
+.box-inputs-container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+.box-form-submit{
+    margin-top: 10px;
+}

@@ -1,66 +1,73 @@
-import { Link } from 'react-location'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom'
+import UserContext from '../../../context/User.context';
+import Cart from '../../../modules/cart/cart-icon/components/cart';
+import './navbar.css'
 
 const Navbar = () => {
+    const { user } = useContext(UserContext)
+    const { logout } = useContext(UserContext)
+
+    const logOut = () => {
+        localStorage.removeItem('token')
+        logout();
+    }
     return(
         <>
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a className="navbar-item" href="">
-                    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"/>
+                    <h1 className='title'> Your Box</h1>
                     </a>
 
-                    <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     </a>
                 </div>
 
-                <div id="navbarBasicExample" className="navbar-menu">
+                <div id="navbar" className="navbar-menu">
                     <div className="navbar-start">
+                        <Link to={'/'} className="navbar-item">
+                            Home
+                        </Link>
                     
-                    <Link to={'/'} className="navbar-item">
-                        Home
-                    </Link>
-                
-                    <Link to={'/products'} className="navbar-item">
-                        Products
-                    </Link>
+                        <Link to={'/products'} className="navbar-item">
+                            Products
+                        </Link>
 
-                    <div className="navbar-item has-dropdown is-hoverable">
-                        <a className="navbar-link">
-                        More
-                        </a>
-
-                        <div className="navbar-dropdown">
-                        <a className="navbar-item">
-                            About
-                        </a>
-                        <a className="navbar-item">
-                            Jobs
-                        </a>
-                        <a className="navbar-item">
-                            Contact
-                        </a>
-                        <hr className="navbar-divider"/>
-                        <a className="navbar-item">
-                            Report an issue
-                        </a>
-                        </div>
+                        <Link to={'/cart'} className="navbar-item">
+                            <Cart />
+                        </Link>
                     </div>
-                    </div>
-
                     <div className="navbar-end">
-                    <div className="navbar-item">
-                        <div className="buttons">
-                        <Link to={`/login/`} className="button is-primary"> 
-                            Sign up
-                        </Link>
-                        <Link to={`/login/`} className="button is-light"> 
-                            Log in
-                        </Link>
+                        {user ? 
+                        <div className="navbar-item has-dropdown is-hoverable  menu-des">
+                            <a className="navbar-link">
+                                <h1> { user.username } </h1>
+                            </a>
+                            <div className="navbar-dropdown">
+                                <a className="navbar-item">
+                                Profile
+                                </a>
+                                <a className="navbar-item" onClick={() =>logOut()}>
+                                Logout
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                        :
+                        <div className="navbar-item">
+                            <div className="buttons">
+                                <Link to={`/signup`} className="button is-primary"> 
+                                    Sign up
+                                </Link>
+                                <Link to={`/login`} className="button is-light"> 
+                                    Log in
+                                </Link>
+                            </div>
+                        </div>
+                        }
                     </div>
                 </div>
             </nav>

@@ -1,6 +1,7 @@
 const  Model = require('../db.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 class Users extends Model {
     static SALT_WORK_FACTOR = 10
@@ -41,11 +42,22 @@ class Users extends Model {
             const payload = {  id: user._id, username }
             const token = jwt.sign(
                 payload,
-                'the dog',
-                { expiresIn: 60 },);
+                process.env.API_KEY,);
             return token
         }
         throw new Error( 'Incorrect username' );
+    }
+    async signup(user) {
+        const hash = await this.createHash(user.password)
+        const newUser = {
+            ...user,
+            password : hash
+        }
+        if(await this.create(newUser)){
+            return true
+        }
+        throw new Error( 'Error in sign up' );
+        
     }
 }
 

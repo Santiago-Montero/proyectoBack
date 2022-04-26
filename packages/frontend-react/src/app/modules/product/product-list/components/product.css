@@ -26,3 +26,7 @@
     justify-content: flex-end;
     width: 50%;
 }
+.button-more-info{
+    display: flex;
+    justify-content: center;
+}

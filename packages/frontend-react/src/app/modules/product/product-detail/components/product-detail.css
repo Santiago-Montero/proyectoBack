@@ -1,0 +1,20 @@
+.box-detail{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.box-detail-img img{
+    width: 400px;
+    height: auto;
+}
+.box-detail-description{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+}
+.box-detail-buy{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}

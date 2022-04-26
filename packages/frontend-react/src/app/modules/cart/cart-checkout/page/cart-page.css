@@ -1,0 +1,7 @@
+.box-cart {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    gap:20px;
+    align-items: center;
+}

@@ -1,46 +1,34 @@
 import './App.css';
 import ProductPage from './app/modules/product/product-list/pages/product-page'
-import { Router, Outlet, ReactLocation} from 'react-location'
+import {BrowserRouter, Route, Routes} from 'react-router-dom' ;
 import ProductPageDetail from './app/modules/product/product-detail/pages/product-detail-page';
 import Navbar from './app/layout/navbar/components/Navbar';
 import Login from './app/modules/auth/login/Login';
-import { Link } from 'react-router-dom';
-const routes = [
-  {
-    path : '/',
-    element : <div> Home page</div>
-  },
-  {
-    path : 'login/',
-    element : <Login />
-  },
-  {
-    path : 'products/',/*
-    children: [
-      {
-        path:':id',
-        element : <ProductPageDetail />
-      }
-    ],*/
-    element : <ProductPage />
-  },
-  {
-    path : 'products/:id',
-    element : <ProductPageDetail />
-
-  },
-]
+import  { UserContextProvider } from './app/context/User.context';
+import PrivateRoute  from './app/modules/auth/privateRoute/PrivateRoute'
+import Signup from './app/modules/auth/signup/Signup';
+import { CartContextProvider } from './app/context/Cart.context';
+import CartPage from './app/modules/cart/cart-checkout/page/cart-page';
 
 function App() {
-  const location = new ReactLocation();
+
   return (
     <>
-      <Router routes={routes} location={location}>
-        <div className="App">
+    <UserContextProvider>
+      <CartContextProvider>
+        <BrowserRouter>
           <Navbar />
-          <Outlet />
-        </div>
-      </Router>
+          <Routes>
+              <Route exact path='/' element={<PrivateRoute > <ProductPage /> </PrivateRoute>} />
+              <Route path='/products' element={<PrivateRoute > <ProductPage /> </PrivateRoute>}/>
+              <Route path='/products/:id' element={<PrivateRoute > <ProductPageDetail /> </PrivateRoute>}/>
+              <Route path='/cart' element={<PrivateRoute > <CartPage /> </PrivateRoute>}/>
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<Signup />} />
+          </Routes>
+        </BrowserRouter>
+      </CartContextProvider>
+    </UserContextProvider>
     </>
   );
 }

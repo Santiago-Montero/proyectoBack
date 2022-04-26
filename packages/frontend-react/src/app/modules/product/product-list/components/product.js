@@ -1,8 +1,15 @@
 import './product.css'
-import { Link } from 'react-location'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import CartContext from '../../../../context/Cart.context'
 
 const Product = ({product}) => {
-    
+    const { addToCart } = useContext(CartContext)
+
+    const add = (product) => {
+        addToCart(product)
+        console.log('Se agrego al carrito')
+    }
     return(
         <>
             <div className='box'>
@@ -13,13 +20,12 @@ const Product = ({product}) => {
                         <p> $ {product.price} </p>
                     </div>
                     <div className='box-button'>
-                        <button className='button is-link'> Buy</button>
+                        <button className='button is-link' onClick={() => add(product)}> Buy</button>
                     </div>
                 </div>
-                <Link to={`/products/${product._id}`}> 
+                <Link to={`/products/${product._id}`} className="button-more-info"> 
                     <button className='button is-ghost'> More Info...</button>
                 </Link>
-                {/* Fijarme lo del route de react 18 nashe */}
             </div>
         </>
     )

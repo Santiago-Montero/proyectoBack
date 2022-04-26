@@ -1,9 +1,11 @@
+require('dotenv').config()
+
 module.exports = {
     mongodb: {
-        url: process.env.DB_URL || 'mongodb+srv://santi:admin@cluster0.o5xka.mongodb.net/ecommerce?retryWrites=true&w=majority',
+        url: process.env.DB_URL,
         options: {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         }
-    }
+    },
 }

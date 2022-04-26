@@ -9,7 +9,6 @@ const ProductPage = () => {
     useEffect(() =>{
         getProducts().then(products =>{
             setProducts(products);
-        
         }).catch((error)=> {
             console.log('Error: ' + error)
         })
