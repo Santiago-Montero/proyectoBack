@@ -11,16 +11,17 @@ const CartPage = () => {
     const buy = () => {
         console.log(user)
         buyCart(user, cart, price)
-        .then(() => console.log('compro...'))
+        .then()
         .catch(err => console.log(err))
     }
     return(
         <>
             <div className="box">
                 <div className="box-cart"> 
-                    <h1> Cart </h1>
-                    <h1> Price : $ {price} </h1>
-
+                    <div className="box-cart-info">
+                        <p className="title"> Cart </p>
+                        <p className="title"> Price : $ {price} </p>
+                    </div>
                     <div className="box-cart-products"> 
                         { cart.length > 0 ? cart.map( (product, index) =>  <CartComponent key={index} product={product}/>) : <h1> The cart is empty... </h1>}
                     </div>

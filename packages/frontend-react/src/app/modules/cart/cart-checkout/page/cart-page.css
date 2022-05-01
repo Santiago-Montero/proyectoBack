@@ -2,6 +2,17 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    gap:20px;
     align-items: center;
+}
+.box-cart-products{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    width: 100%;
+}
+.box-cart-info{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
