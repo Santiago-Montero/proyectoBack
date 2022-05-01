@@ -39,7 +39,7 @@ class Users extends Model {
     async login(username, pass) {
         const user = await this.getByUsername(username) ;
         if(user && await this.validate(user.password, pass)){
-            const payload = {  id: user._id, username }
+            const payload = {  id: user._id, username, admin: username.admin }
             const token = jwt.sign(
                 payload,
                 process.env.API_KEY,);

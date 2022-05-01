@@ -12,9 +12,11 @@ class Model {
             const doc = await this.collection.create(element)
             if(doc){
                 console.log('Se creo correctamente')
+                return true;
             }
         }catch(err){
             console.log(err)
+            return false;
         }
     }
     async getAll() {

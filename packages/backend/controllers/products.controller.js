@@ -1,4 +1,4 @@
-const { getAllProducts, createProduct, getProductById } = require('../services/products.service')
+const { getAllProducts, createProduct, getProductById, putUpdateProduct } = require('../services/products.service')
 
 async function getProducts(req, res) {
     const products = await getAllProducts()
@@ -17,8 +17,16 @@ async function postcreateProduct(req, res) {
     res.send(newProduct)
 }
 
+async function putProduct(req, res) {
+    const id = req.params.id
+    const product = req.body
+    const updateProduct = await putUpdateProduct(id,product)
+    res.send(updateProduct)
+}
+
 module.exports  = { 
     postcreateProduct,
     getProduct,
     getProducts,
+    putProduct,
 }
