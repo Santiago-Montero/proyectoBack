@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+const url = 'https://your-box-api.herokuapp.com/'
+
 export const postLogin = (user) =>{
     return new Promise ((resolve, reject) => {
-        axios.post('http://localhost:8080/user/login', user)
+        axios.post(url, user)
         .then((res) => {
             resolve(res.data)
         }).catch((error) => {
@@ -13,7 +15,7 @@ export const postLogin = (user) =>{
 
 export const postSignup = (user) =>{
     return new Promise ((resolve, reject) => {
-        axios.post('http://localhost:8080/user/singup', user)
+        axios.post(url, user)
         .then((res) => {
             resolve(res.data)
         }).catch((error) => {
@@ -24,7 +26,7 @@ export const postSignup = (user) =>{
 
 export const getUser = (username) => {
     return new Promise ((resolve, reject) => {
-        axios.get('http://localhost:8080/user/'+username)
+        axios.get(url+username)
         .then((res) => {
             resolve(res.data)
         }).catch((error) => {

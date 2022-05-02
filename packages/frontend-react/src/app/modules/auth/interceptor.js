@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:8080/';
+const url = 'https://your-box-api.herokuapp.com/';
 const interceptor = axios.create({baseURL: url });
 interceptor.interceptors.request.use(request => {
     const token = localStorage.getItem('token');

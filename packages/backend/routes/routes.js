@@ -5,8 +5,10 @@ const { guard } = require('../guards/jwt.strategy');
 const { getProducts, getProduct, postcreateProduct, putProduct } = require("../controllers/products.controller");
 const { postSignUp, postLogin, getUserByUsername, getUser } = require("../controllers/auth.controller");
 const { postCreateCart } = require("../controllers/cart.controller");
+const cors = require('cors')
 
 const app = express();
+app.use(cors())
 app.use(compression());
 app.use(express.json());
 
@@ -24,25 +26,6 @@ routerCart.use(express.urlencoded({extended: true }));
 
 routerUsers.use(express.json())
 
-routerProducts.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-});
-routerUsers.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-});
-
-routerCart.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-});
 
 
 routerProducts.get('/', getProducts)
