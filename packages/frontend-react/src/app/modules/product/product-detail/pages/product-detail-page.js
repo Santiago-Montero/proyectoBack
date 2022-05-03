@@ -11,12 +11,14 @@ const ProductPageDetail = () => {
     useEffect(() =>{
         getProduct(id).then(product =>{
             setProduct(product);
+            console.log(product)
         }).catch((error)=> {
             console.log('Error: ' + error)
         })
-    },[id]) 
+    },[]) 
     return(
         <>
+        {console.log(`AAA:${product}`)}
             <div className="container products">     
                 {product ? <ProductDetail product={product}/> : <h1> Loading... </h1>}
             </div>

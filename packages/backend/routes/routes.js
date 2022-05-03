@@ -2,7 +2,7 @@ const express = require("express");
 const { Router }  = require('express')
 const compression = require("compression");
 const { guard } = require('../guards/jwt.strategy');
-const { getProducts, getProduct, postcreateProduct, putProduct } = require("../controllers/products.controller");
+const { getProducts, getProduct, postcreateProduct, putProduct, getProductsByCategory } = require("../controllers/products.controller");
 const { postSignUp, postLogin, getUserByUsername, getUser } = require("../controllers/auth.controller");
 const { postCreateCart } = require("../controllers/cart.controller");
 const cors = require('cors')
@@ -27,11 +27,11 @@ routerCart.use(express.urlencoded({extended: true }));
 routerUsers.use(express.json())
 
 
-
+routerProducts.get('/category/:category', getProductsByCategory)
 routerProducts.get('/', getProducts)
-routerProducts.get('/:id',guard, getProduct)
+routerProducts.get('/:id', getProduct)
 routerProducts.post('/', guard, postcreateProduct)
-routerProducts.patch('/update/:id', putProduct)
+routerProducts.patch('/update/:id', guard,putProduct)
 
 routerUsers.get('/:username', getUser)
 routerUsers.post('/signup', postSignUp)

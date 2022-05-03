@@ -1,4 +1,4 @@
-const { getAllProducts, createProduct, getProductById, putUpdateProduct } = require('../services/products.service')
+const { getAllProducts, createProduct, getProductById, putUpdateProduct, getAllProductsByCategory } = require('../services/products.service')
 
 async function getProducts(req, res) {
     const products = await getAllProducts()
@@ -10,9 +10,14 @@ async function getProduct(req, res) {
     const product = await getProductById(id)
     res.send(product)
 }
-
+async function getProductsByCategory(req, res) {
+    const category = req.params.category
+    const products = await getAllProductsByCategory(category)
+    res.send(products)
+}
 async function postcreateProduct(req, res) {
     const product = req.body
+    
     const newProduct = await createProduct(product)
     res.send(newProduct)
 }
@@ -28,5 +33,6 @@ module.exports  = {
     postcreateProduct,
     getProduct,
     getProducts,
+    getProductsByCategory,
     putProduct,
 }

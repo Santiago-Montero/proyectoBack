@@ -7,10 +7,13 @@ import './navbar.css'
 const Navbar = () => {
     const { user } = useContext(UserContext)
     const { logout } = useContext(UserContext)
-
+    const categories = ['apple', 'samsung']
     const logOut = () => {
         localStorage.removeItem('token')
         logout();
+    }
+    const upperFirstLetter = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);  
     }
     return(
         <>
@@ -36,10 +39,25 @@ const Navbar = () => {
                         <Link to={'/products'} className="navbar-item">
                             Products
                         </Link>
-
+                        <div className="navbar-item has-dropdown is-hoverable  menu-des">
+                            <a className="navbar-link">
+                                Categories
+                            </a>
+                            <div className="navbar-dropdown">
+                                {
+                                    categories.length > 0 &&
+                                        categories.map( (category, i) => 
+                                            <Link to={`products/${category}`} key={i} className="navbar-item">
+                                                { upperFirstLetter(category) }
+                                            </Link>
+                                        ) 
+                                }
+                            </div>
+                        </div>
                         <Link to={'/cart'} className="navbar-item">
                             <Cart />
                         </Link>
+                        
                     </div>
                     <div className="navbar-end">
                         {user ? 
@@ -48,9 +66,9 @@ const Navbar = () => {
                                 <h1> { user.username } </h1>
                             </a>
                             <div className="navbar-dropdown">
-                                <a className="navbar-item">
-                                Profile
-                                </a>
+                                <Link to={`/user`} className="navbar-item"> 
+                                    Profile
+                                </Link>
                                 <a className="navbar-item" onClick={() =>logOut()}>
                                 Logout
                                 </a>

@@ -4,8 +4,15 @@ const products = new Products()
 async function getAllProducts(){
     return await products.getAll();
 }
+async function getAllProductsByCategory(category){
+    return await products.getByCategory(category)
+}
 async function createProduct(product){
-    return await products.create(product)
+    const newProduct = {
+        ...product,
+        timestamp: new Date()
+    }
+    return await products.create(newProduct)
 }
 async function getProductById(id){
     return await products.getById(id)
@@ -17,5 +24,6 @@ module.exports = {
     getAllProducts,
     createProduct,
     getProductById,
+    getAllProductsByCategory,
     putUpdateProduct
 }

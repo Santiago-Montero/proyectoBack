@@ -6,11 +6,13 @@ const UserContext = React.createContext()
 
 export const UserContextProvider = ({children}) => {
     const [user, setUser] = useState()
-
+    const [ isAdmin, setIsAdmin] = useState(false)
     const login = (user) => {
         getUser(user.username).then((res) => 
         {
             setUser(res)
+            if(res.admin) setIsAdmin(true)
+            else setIsAdmin(false)
         }) 
         .catch(err => ('Error: ', err))
     }
@@ -24,6 +26,7 @@ export const UserContextProvider = ({children}) => {
         <UserContext.Provider 
             value={{
                 user,
+                isAdmin,
                 login,
                 logout
             }}

@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { postLogin } from '../auth.service';
+import { postSignup } from '../auth.service';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import UserContext from '../../../context/User.context';
@@ -25,19 +25,18 @@ const Signup = () =>{
           if (!values.username) {
             errors.username = 'Required';
           }
-          //validar los campos :)
           return errors;
         }}
         onSubmit={(values) => { 
-          /*postSignup(values).then(res =>{
-            console.log(values)
+          console.log(values)
+          postSignup(values).then(res =>{
             localStorage.setItem('token', res)
             login(values)
             navigate('/');
             console.log(res)
           }).catch((error)=> {
               console.log('Error: ' + error)
-          })*/
+          })
         }}
       >
         {({
@@ -47,7 +46,6 @@ const Signup = () =>{
           handleChange,
           handleBlur,
           handleSubmit,
-          isSubmitting,
         }) => (
           <form onSubmit={handleSubmit} className="box-form">
             <div className='box-inputs'>
@@ -150,7 +148,7 @@ const Signup = () =>{
             </div>
             <div className="field is-grouped box-form-submit">
               <div className="control">
-                <button className="button is-link"  disabled={isSubmitting}>Submit</button>
+                <button className="button is-link">Submit</button>
               </div>
             </div>
           </form>
