@@ -18,7 +18,6 @@ const ProductPageDetail = () => {
     },[]) 
     return(
         <>
-        {console.log(`AAA:${product}`)}
             <div className="container products">     
                 {product ? <ProductDetail product={product}/> : <h1> Loading... </h1>}
             </div>

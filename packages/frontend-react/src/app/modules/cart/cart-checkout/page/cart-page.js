@@ -2,6 +2,7 @@ import { useContext } from "react"
 import CartContext from "../../../../context/Cart.context"
 import UserContext from "../../../../context/User.context"
 import { buyCart } from "../../cart.service"
+import { generateOrder } from "../../order.service"
 import CartComponent from "../components/cart-component"
 import './cart-page.css'
 
@@ -9,9 +10,10 @@ const CartPage = () => {
     const { cart, price } = useContext(CartContext)
     const { user } = useContext(UserContext)
     const buy = () => {
-        console.log(user)
         buyCart(user, cart, price)
-        .then()
+        .then((cart) => {
+            generateOrder(user.username, cart.price, cart).then().catch( err => console.log(err))
+        } )
         .catch(err => console.log(err))
     }
     return(

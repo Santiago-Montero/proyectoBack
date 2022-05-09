@@ -20,10 +20,14 @@ async function getProductById(id){
 async function putUpdateProduct(id, product){
     return await products.updateById(id, product)
 }
+async function deleteProductById(id){
+    return await products.deleteById(id)
+}
 module.exports = {
     getAllProducts,
     createProduct,
     getProductById,
     getAllProductsByCategory,
+    deleteProductById,
     putUpdateProduct
 }

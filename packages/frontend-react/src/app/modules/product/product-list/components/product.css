@@ -31,5 +31,19 @@
     justify-content: center;
 }
 .box-new{
-    width: 300px;
+    width: 340px;
+    height: 435px;
+}
+.buttons{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+}
+.buttons button{
+    background-color: transparent;
+    border: none;
+}
+.button-add button{
+    background-color: transparent;
+    border: none;   
 }

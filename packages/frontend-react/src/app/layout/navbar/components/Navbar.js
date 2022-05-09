@@ -1,15 +1,32 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import UserContext from '../../../context/User.context';
+import { useNavigate } from 'react-router-dom';
 import Cart from '../../../modules/cart/cart-icon/components/cart';
+import { getProducts } from '../../../modules/product/product.service'
 import './navbar.css'
 
 const Navbar = () => {
     const { user } = useContext(UserContext)
     const { logout } = useContext(UserContext)
-    const categories = ['apple', 'samsung']
+    const [ categories, setCategories] = useState([])
+    //const categories = ['apple', 'samsung']
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        getProducts().then((res) => {
+            res.forEach( products => {
+               if(!categories.includes(products.category)){
+                    setCategories([...categories, products.category ])
+               }
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
     const logOut = () => {
         localStorage.removeItem('token')
+        navigate('/login');
         logout();
     }
     const upperFirstLetter = (str) => {
@@ -45,7 +62,7 @@ const Navbar = () => {
                             </a>
                             <div className="navbar-dropdown">
                                 {
-                                    categories.length > 0 &&
+                                    categories.length > 1 &&
                                         categories.map( (category, i) => 
                                             <Link to={`products/${category}`} key={i} className="navbar-item">
                                                 { upperFirstLetter(category) }
@@ -70,7 +87,7 @@ const Navbar = () => {
                                     Profile
                                 </Link>
                                 <a className="navbar-item" onClick={() =>logOut()}>
-                                Logout
+                                    Logout
                                 </a>
                             </div>
                         </div>

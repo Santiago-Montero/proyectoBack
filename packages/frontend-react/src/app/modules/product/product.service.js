@@ -30,7 +30,7 @@ export const getProduct = (id) =>{
 
 export const updateProduct = (id, product) =>{
     return new Promise ((resolve, reject) => {
-        interceptor.patch(`/products/update/${id}`, product)
+        interceptor.patch(`/products/${id}/update`, product)
         .then((res) => {
             console.log(res)
             resolve(res.data)
@@ -44,10 +44,20 @@ export const createProduct = (product) =>{
     return new Promise ((resolve, reject) => {
         interceptor.post(`/products`, product)
         .then((res) => {
-            console.log(res)
             resolve(res.data)
         }).catch((error) => {
-                reject('Error : ', error)
+            reject('Error : ', error)
+        })
+    })
+}
+
+export const deleteProduct = (id) =>{
+    return new Promise ((resolve, reject) => {
+        interceptor.delete(`/products/${id}/delete`)
+        .then((res) => {
+            resolve(res.data)
+        }).catch((error) => {
+            reject('Error : ', error)
         })
     })
 }

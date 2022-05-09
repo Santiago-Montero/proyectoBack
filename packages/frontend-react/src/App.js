@@ -12,6 +12,7 @@ import CartPage from './app/modules/cart/cart-checkout/page/cart-page';
 import ProductPageUpdate from './app/modules/product/product-form/pages/product-page-update';
 import ProductPageCreate from './app/modules/product/product-form/pages/product-page-create';
 import UserPageProfile from './app/modules/user/user-profile/pages/user-profile-page';
+import Messages from './app/modules/messages/messages';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <CartContextProvider>
         <BrowserRouter>
           <Navbar />
+          <Messages key={1}/>
           <Routes>
               <Route exact path='/' element={<PrivateRoute > <ProductPage /> </PrivateRoute>} />
               <Route path='/products' element={<PrivateRoute > <ProductPage /> </PrivateRoute>}/>

@@ -4,7 +4,13 @@
 }
 .profile{
     display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: center;
+}
+.profile-info{
+    display: flex;
     justify-content: center;
     flex-flow: column wrap;
-    align-items: center;
+    align-items:flex-start;
 }

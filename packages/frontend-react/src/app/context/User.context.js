@@ -7,6 +7,7 @@ const UserContext = React.createContext()
 export const UserContextProvider = ({children}) => {
     const [user, setUser] = useState()
     const [ isAdmin, setIsAdmin] = useState(false)
+    
     const login = (user) => {
         getUser(user.username).then((res) => 
         {

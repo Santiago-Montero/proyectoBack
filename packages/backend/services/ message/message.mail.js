@@ -3,7 +3,6 @@ require('dotenv').config()
 const { createTransport } = require('nodemailer')
 
 const mail = process.env.MAIL_ADMIN
-//mjybrqzqnthplpuh
 const transporter = createTransport({
     host: 'smtp.gmail.com',
     port: 465,

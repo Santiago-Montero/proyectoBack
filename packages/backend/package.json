@@ -17,12 +17,15 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.4.6",
     "minimist": "^1.2.6",
     "mongoose": "^6.2.10",
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
     "react-jwt": "^1.1.4",
+    "socket.io": "^4.5.0",
     "twilio": "^3.76.1",
+    "websocket": "^1.0.34",
     "yarn": "^1.22.18"
   }
 }

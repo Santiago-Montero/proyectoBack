@@ -16,7 +16,6 @@ async function createCart(user, products, price){
         timestamp: new Date(),
     }
     const newCart = await cart.create(cartProducts)
-    console.log(newCart)
     if(newCart){
         let msg = ''
         products.forEach( product => {
@@ -24,13 +23,14 @@ async function createCart(user, products, price){
         })
         const mailOptions = {
             from: process.env.MAIL_ADMIN, 
-            to: process.env.MAIL_ADMIN,
+            to: `${process.env.MAIL_ADMIN}, ${user.email}`,
             subject: 'New order '+ user.username,
             html: `<h1 style="color: blue;">The user buy these products : `+ msg
         }
         transporter.sendMail(mailOptions)
-        .then((res) => console.log(res))
+        .then()
         .catch((err) => console.log(err))
+
         client.messages.create({
             from: 'whatsapp:+14155238886',
             body: 'New order '+ user.username +'. The user buy these products :'+ msg,
@@ -44,7 +44,7 @@ async function createCart(user, products, price){
             from: '+18285648984',
             to: user.phone
         })
-        .then((message) =>  console.log(message))
+        .then()
         .catch((error) =>  console.log(error))
     }
     return newCart 
