@@ -2,13 +2,15 @@ import { useContext, useEffect, useState } from 'react'
 import io from "socket.io-client";
 import UserContext from '../../context/User.context'
 import { saveMessage } from './messages.service';
+import './messages.css'
 
 let socket;
-const CONNECTION_PORT = "http://localhost:8080";
+const CONNECTION_PORT = "https://your-box-api.herokuapp.com/";
 
 const Messages = () => {
     const { user } = useContext(UserContext)
     const [loggedIn, setLoggedIn] = useState(false);
+    const [open, setOpen] = useState(false);
     const [userName, setUserName] = useState("");
   
     // After Login
@@ -57,34 +59,65 @@ const Messages = () => {
     }
     return (
         <>
-            <div className="chatContainer">
-                <div className="messages">
-                    {messageList.length > 0 && messageList.map((val, key) => {
-                        return (
-                            <div
-                            className="messageContainer"
-                            id={key}
-                            >
-                                <div className="messageIndividual" id={key}>
-                                    {val.author}: {val.message}
-                                </div>
+        { user && 
+            <div className='msg'>  
+                {!open ? 
+                    <div> 
+                        <button className="open" onClick={() => setOpen(!open)}>
+                        {messageList.length > 0 ? <img src="https://i.imgur.com/H4r54ro.png"/> : <img src="https://i.imgur.com/oEOYYIx.png"/>  }
+                                
+                        </button> 
+                    </div>
+                :
+                    <>
+                        <div className="chatContainer">
+                            <div className="messages">
+                                {messageList.length > 0 && messageList.map((val, key) => {
+                                    return (
+                                        <div
+                                        className="messageContainer"
+                                        id={key}
+                                        >   
+                                            {val.author == user.username ?
+                                                <div className='messageIndividualMy'> 
+                                                    <div className="myMsg" id={key}>
+                                                        <div className='pmsg'><b> You </b> {val.message} </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            :
+                                                <div className='messageIndividualOther'>
+                                                    <div className="otherMsg" id={key}>
+                                                        <div className='pmsg'><b>{val.author} </b>{val.message}</div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    );
+                                })}
                             </div>
-                        );
-                    })}
-                </div>
-
-                <div className="messageInputs">
-                    <input
-                    type="text"
-                    placeholder="Message..."
-                    onChange={(e) => {
-                        setMessage(e.target.value);
-                    }}
-                    />
-                    <button onClick={sendMessage}>Send</button>
-                </div>
+                            <button className='close delete' onClick={() => setOpen(!open)}>  </button> 
+        
+                            <div className="messageInputs">
+                                <input
+                                value={message}
+                                type="text"
+                                placeholder="Message..."
+                                className='input is-primary'
+                                onChange={(e) => {
+                                    setMessage(e.target.value);
+                                }}
+                                />
+                                <button className="button is-link" onClick={sendMessage}>Send</button>
+                            </div>
+                        </div>
+                    </>
+                }
             </div>
+        }
         </>
+        
+        
     )
 }
 

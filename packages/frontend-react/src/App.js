@@ -22,7 +22,6 @@ function App() {
       <CartContextProvider>
         <BrowserRouter>
           <Navbar />
-          <Messages key={1}/>
           <Routes>
               <Route exact path='/' element={<PrivateRoute > <ProductPage /> </PrivateRoute>} />
               <Route path='/products' element={<PrivateRoute > <ProductPage /> </PrivateRoute>}/>
@@ -35,6 +34,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<Signup />} />
           </Routes>
+          <Messages/>
         </BrowserRouter>
       </CartContextProvider>
     </UserContextProvider>

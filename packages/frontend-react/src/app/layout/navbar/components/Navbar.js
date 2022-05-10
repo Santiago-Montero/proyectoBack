@@ -5,13 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import Cart from '../../../modules/cart/cart-icon/components/cart';
 import { getProducts } from '../../../modules/product/product.service'
 import './navbar.css'
+import { useJwt } from "react-jwt"; 
 
 const Navbar = () => {
     const { user } = useContext(UserContext)
-    const { logout } = useContext(UserContext)
+    const { logout, login } = useContext(UserContext)
     const [ categories, setCategories] = useState([])
-    //const categories = ['apple', 'samsung']
     let navigate = useNavigate();
+    const token = localStorage.getItem('token')
+    const { decodedToken } = useJwt(token);
+    
+    useEffect(() => {
+        if(decodedToken){
+            login(decodedToken)
+        }
+    }, [decodedToken])
 
     useEffect(() => {
         getProducts().then((res) => {
@@ -23,7 +31,8 @@ const Navbar = () => {
         }).catch((err) => {
             console.log(err)
         })
-    }, [])
+    }, [categories])
+
     const logOut = () => {
         localStorage.removeItem('token')
         navigate('/login');

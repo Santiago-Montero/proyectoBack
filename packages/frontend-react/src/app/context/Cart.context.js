@@ -15,13 +15,19 @@ export const CartContextProvider = ({children}) => {
             product.quantity = 1
             setCart([...cart, product])
         }
-        setPrice(price + Number(product.price) * product.quantity)
-        console.log(price)
+        const newPrice = Number(product.price) * product.quantity
+        setPrice(Number(price) + Number(newPrice))
+    }
+
+    const emptyCart = () => {
+        setCart([])
+        setPrice(0)
     }
     return (
         <CartContext.Provider 
             value={{
                 addToCart,
+                emptyCart,
                 cart,
                 price
             }}

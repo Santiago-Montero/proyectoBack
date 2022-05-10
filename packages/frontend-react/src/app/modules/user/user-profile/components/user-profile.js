@@ -27,10 +27,11 @@ const UserProfile = ({user, orders, msg}) => {
             </div>
             <div className="box">
                 <div className="profile-msg">
-                    <p>Messages</p>
+                    <b>Messages</b>
+                    <br></br>
                     { msg.length > 0 ? 
                         msg.map( message => {
-                            return `You send this message : ${message.timestamp} ${message.message} \n`
+                            return `You send this message : ${message.message}`
                         })
                     :
                         <h3> Have 0 messages </h3>

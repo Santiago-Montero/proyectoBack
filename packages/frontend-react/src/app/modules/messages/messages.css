@@ -1,0 +1,78 @@
+.msg{
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+.messages{
+    width: 300px;
+    height: 300px;
+    background-color: rgb(148, 183, 183);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    gap: 2px;
+    border-radius: 7px;
+}
+.chatContainer {
+    padding-top: 20px;
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-end;
+}
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.messageInputs{
+    display: flex;
+    justify-content: center;
+
+}
+.open {
+    background-color: transparent;
+    border: none;
+}
+.open img {
+    width: 40px;
+}
+.messageContainer{
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+}
+.messageIndividualMy{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    width: 100%;
+}
+.messageIndividualOther{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 100%;
+}
+.myMsg {
+    width: 100px;
+    border-radius: 7px;
+    background-color: beige;
+    display: flex;
+    flex-flow: row wrap;
+}
+.otherMsg {
+    width: 100px;
+    border-radius: 7px;
+    background-color: beige;
+    display: flex;
+    flex-flow: row wrap;
+}
+.pmsg {
+    display: flex;
+    flex-flow: column wrap;
+}
+.time {
+    font-size: 36px;
+    background-color: rgb(15, 14, 13);
+}

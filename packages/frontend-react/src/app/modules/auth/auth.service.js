@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-//const url = 'https://your-box-api.herokuapp.com/'
-const url = 'http://localhost:8080/'
+
+const url = 'https://your-box-api.herokuapp.com/'
+//const url = 'http://localhost:8080/'
 export const postLogin = (user) =>{
     return new Promise ((resolve, reject) => {
         axios.post(`${url}user/login`, user)

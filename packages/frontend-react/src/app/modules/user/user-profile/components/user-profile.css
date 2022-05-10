@@ -14,3 +14,14 @@
     flex-flow: column wrap;
     align-items:flex-start;
 }
+.profile-order{
+    width: 300px;
+    height: 300px;
+    overflow: auto;
+    padding: 10px;
+}
+.profile-msg{
+    width: 300px;
+    height: 300px;
+    overflow: auto;
+}
