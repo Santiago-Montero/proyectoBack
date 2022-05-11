@@ -12,9 +12,11 @@ const server = app.listen(PORT, () =>{
 });
 
 const io = require('socket.io')(server, {
+    /*
     cors: {
-      origin: '*',
-    }
+      origin: "https://your-box-ecommerce.000webhostapp.com",
+    },*/
+    origins:'your-box-ecommerce.000webhostapp.com:* https://your-box-ecommerce.000webhostapp.com:* https://www.your-box-ecommerce.000webhostapp.com:*'
   });
 
 io.on("connection", (socket) => {

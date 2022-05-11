@@ -49,8 +49,8 @@ const ProductForm = ({product, action}) => {
                 }) => (
                  !isSubmit ?
 
-                    <form onSubmit={handleSubmit} className="box-form">
-                        <div className="field">
+                    <form onSubmit={handleSubmit} className="box-form box">
+                        <div className="field box">
                             <label className="label">Name</label>
                             <div className="control has-icons-left has-icons-right">
                                 <input
@@ -98,6 +98,7 @@ const ProductForm = ({product, action}) => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.photo}
+                                    className="input"
                                 />
                             </div>
                         </div>

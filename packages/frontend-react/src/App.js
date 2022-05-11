@@ -13,6 +13,7 @@ import ProductPageUpdate from './app/modules/product/product-form/pages/product-
 import ProductPageCreate from './app/modules/product/product-form/pages/product-page-create';
 import UserPageProfile from './app/modules/user/user-profile/pages/user-profile-page';
 import Messages from './app/modules/messages/messages';
+import Error from './app/modules/error/error';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
               <Route path='/cart' element={<PrivateRoute > <CartPage /> </PrivateRoute>}/>
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<Signup />} />
+              <Route path='/*' element={<Error />} />
           </Routes>
           <Messages/>
         </BrowserRouter>
